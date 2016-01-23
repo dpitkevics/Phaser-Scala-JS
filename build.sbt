@@ -1,4 +1,4 @@
-//enablePlugins(ScalaJSPlugin)
+enablePlugins(ScalaJSPlugin)
 
 name := "Phaser Scala JS"
 
