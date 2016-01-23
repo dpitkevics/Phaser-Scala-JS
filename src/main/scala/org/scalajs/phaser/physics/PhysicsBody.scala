@@ -8,7 +8,7 @@ import scala.scalajs.js.annotation.JSName
 
 @js.native
 @JSName("Phaser.Component.PhysicsBody")
-trait PhysicsBody {
+trait PhysicsBody extends js.Any {
 
   var body: Body = js.native
   var x: Double = js.native

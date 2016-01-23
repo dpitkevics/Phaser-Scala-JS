@@ -1,7 +1,10 @@
 package org.scalajs.phaser
 
 import org.scalajs.phaser.animations.AnimationManager
+import org.scalajs.phaser.groups.Group
+import org.scalajs.phaser.inputs.Input
 import org.scalajs.phaser.physics.{PhysicsBody, Physics}
+import org.scalajs.phaser.worlds.World
 
 import scala.scalajs.js
 import js.annotation._
@@ -26,6 +29,10 @@ class Game(
   val add: GameObjectFactory = js.native
 
   val physics: Physics = js.native
+
+  val world: World = js.native
+
+  val input: Input = js.native
 }
 
 @js.native
@@ -56,6 +63,14 @@ abstract class State extends js.Object {
 class Loader extends js.Object {
   def image(key: String, url: String = js.native,
             overwrite: Boolean = false): this.type = js.native
+
+  def spritesheet(key: String,
+                  url: String = js.native,
+                  frameWidth: Double,
+                  frameHeight: Double,
+                  frameMax: Double = -1,
+                  margin: Double = 0,
+                  spacing: Double = 0): this.type = js.native
 }
 
 @js.native
@@ -65,24 +80,22 @@ class GameObjectFactory(game: Game) extends js.Object {
              key: String = js.native): Sprite = js.native
 
   def graphics(x: Double = 0, y: Double = 0): Graphics = js.native
+
+  def group(parent: js.Any = null, name: String = "group", addToStage: Boolean = false, enableBody: Boolean = false, physicsBodyType: Int = 0): Group = js.native
 }
 
 @js.native
 @JSName("Phaser.Sprite")
-class Sprite protected() extends pixi.Sprite
+class Sprite(game: Game, x: Double, y: Double, key: String, frame: String) extends pixi.Sprite
   with ComponentCore with InputEnabled with PhysicsBody {
-
-  val game: Game = js.native
-  val key: String = js.native
-
-  var frame: Int = js.native
-
 }
 
 @js.native
 trait ComponentCore extends js.Object {
   val animations: AnimationManager = js.native
   val events: Events = js.native
+
+  var frame: Int = js.native
 }
 
 @js.native
@@ -125,4 +138,8 @@ trait PointLike extends js.Object {
 
 @js.native
 @JSName("Phaser.Point")
-class Point(var x: Double = 0, var y: Double = 0) extends js.Object
+class Point(var x: Double = 0, var y: Double = 0) extends js.Object {
+
+  def setTo(x: Double, y: Double = null.asInstanceOf[Double]): this.type = js.native
+
+}

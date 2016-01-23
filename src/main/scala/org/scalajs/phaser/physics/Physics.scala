@@ -1,11 +1,15 @@
 package org.scalajs.phaser.physics
 
+import org.scalajs.phaser.physics.arcade.Arcade
+
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSName
 
 @js.native
 @JSName("Phaser.Physics")
 class Physics() extends js.Object {
+
+  val arcade: Arcade = js.native
 
   def startSystem(system: Int): Unit = js.native
 
