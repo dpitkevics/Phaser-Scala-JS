@@ -1,6 +1,6 @@
 enablePlugins(ScalaJSPlugin)
 
-name := "Phaser Scala JS"
+name := "phaser-scala-js"
 
 organization := "com.github.dpitkevics"
 
