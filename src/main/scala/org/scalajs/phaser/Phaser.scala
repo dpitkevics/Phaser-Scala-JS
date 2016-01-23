@@ -4,6 +4,7 @@ import org.scalajs.phaser.animations.AnimationManager
 import org.scalajs.phaser.groups.Group
 import org.scalajs.phaser.inputs.Input
 import org.scalajs.phaser.physics.{PhysicsBody, Physics}
+import org.scalajs.phaser.texts.Text
 import org.scalajs.phaser.worlds.World
 
 import scala.scalajs.js
@@ -76,12 +77,16 @@ class Loader extends js.Object {
 @js.native
 @JSName("Phaser.GameObjectFactory")
 class GameObjectFactory(game: Game) extends js.Object {
+
   def sprite(x: Double = 0, y: Double = 0,
              key: String = js.native): Sprite = js.native
 
   def graphics(x: Double = 0, y: Double = 0): Graphics = js.native
 
   def group(parent: js.Any = null, name: String = "group", addToStage: Boolean = false, enableBody: Boolean = false, physicsBodyType: Int = 0): Group = js.native
+
+  def text(x: Double = 0, y: Double = 0, text: String = "", style: js.Dictionary[String] = null, group: Group = null): Text = js.native
+
 }
 
 @js.native

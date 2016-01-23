@@ -2,6 +2,7 @@ package test.states
 
 import org.scalajs.phaser.groups.Group
 import org.scalajs.phaser.inputs.types.CursorKeys
+import org.scalajs.phaser.texts.Text
 import org.scalajs.phaser.{Sprite, State}
 import org.scalajs.phaser.physics.Physics
 
@@ -16,6 +17,9 @@ class GameState extends State {
   var player: Sprite = null
   var cursors: CursorKeys = null
   var stars: Group = null
+
+  var score: Int = 0
+  var scoreText: Text = null
 
   @js.native
   def getImageUrl(path: String): String = {
@@ -68,6 +72,9 @@ class GameState extends State {
       star.body.gravity.y = 6
       star.body.bounce.y = 0.7 + Math.random() * 0.2
     }
+
+    val scoreTextStyle = js.Dictionary("fontSize" -> "32px", "fill" -> "#000")
+    scoreText = game.add.text(16, 16, "Score: 0", scoreTextStyle)
   }
 
   override def update(): Unit = {
@@ -99,6 +106,9 @@ class GameState extends State {
   @js.native
   def collectStar(player: Sprite, star: Sprite): Unit = {
     star.kill()
+
+    score += 10
+    scoreText.text = "Score: " + score
   }
 
 }
