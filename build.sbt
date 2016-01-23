@@ -2,9 +2,13 @@ enablePlugins(ScalaJSPlugin)
 
 name := "Phaser Scala JS"
 
+organization := "com.github.dpitkevics"
+
 version := "1.0"
 
 scalaVersion := "2.11.7"
+
+publishMavenStyle := true
 
 libraryDependencies ++= Seq(
   "org.scala-js" %%% "scalajs-dom" % "0.8.1"
