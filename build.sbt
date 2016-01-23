@@ -1,6 +1,6 @@
 enablePlugins(ScalaJSPlugin)
 
-name := "Phaser"
+name := "Phaser Scala JS"
 
 version := "1.0"
 
